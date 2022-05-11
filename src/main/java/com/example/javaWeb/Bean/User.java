@@ -221,7 +221,7 @@ public class User {
         jdbcUtils.close(connection, preparedStatement, null);
         return flag;
     }
-
+/*
     public static String getShoppingCart(String userID) {
         connection = jdbcUtils.getConnection();
         String sql = "select shopping_cart from user where id=?;";
@@ -245,48 +245,50 @@ public class User {
         jdbcUtils.close(connection, preparedStatement, resultSet);
         return shoppingCart;
     }
-
-//    /**
-//     * 添加购物车
-//     * @param userID 用户ID
-//     * @param productId 产品ID
-//     * @param buyNum 购买数量
-//     * @return
-//     */
-//    public static boolean AddShoppingCart(String userID, String productId, Integer buyNum) {
-//        //原来的购物车加现在的购物车
-//        String products=getShoppingCart(userID);
-//        if(products!=null && !products.equals("")) {
-//            for(int i=0; i<buyNum; i++) {
-//                products=products+","+productId;
-//            }
-//        }
-//        else {
-//            products=productId;
-//            for(int i=1; i<buyNum; i++) {
-//                products=products+","+productId;
-//            }
-//        }
-//        connection = jdbcUtils.getConnection();
-//        String sql = "UPDATE `user` SET shopping_cart = ? WHERE id = ?;";
-//        boolean flag = false;
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            //执行sql语句之前需要给参数赋值
-//            preparedStatement.setString(1, products);
-//            preparedStatement.setString(2, userID);
-//            //执行sql语句
-//            int res = preparedStatement.executeUpdate();
-//            if (res>0) {
-//                flag=true;
-//                System.out.println("购物车更新成功");
-//            } else {
-//                System.out.println("购物车更新失败");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        jdbcUtils.close(connection, preparedStatement, null);
-//        return flag;
-//    }
+*/
+    /**
+     * 添加购物车
+     * @param userID 用户ID
+     * @param productId 产品ID
+     * @param buyNum 购买数量
+     * @return
+     */
+    /*
+    public static boolean AddShoppingCart(String userID, String productId, Integer buyNum) {
+        //原来的购物车加现在的购物车
+        String products=getShoppingCart(userID);
+        if(products!=null && !products.equals("")) {
+            for(int i=0; i<buyNum; i++) {
+                products=products+","+productId;
+            }
+        }
+        else {
+            products=productId;
+            for(int i=1; i<buyNum; i++) {
+                products=products+","+productId;
+            }
+        }
+        connection = jdbcUtils.getConnection();
+        String sql = "UPDATE `user` SET shopping_cart = ? WHERE id = ?;";
+        boolean flag = false;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            //执行sql语句之前需要给参数赋值
+            preparedStatement.setString(1, products);
+            preparedStatement.setString(2, userID);
+            //执行sql语句
+            int res = preparedStatement.executeUpdate();
+            if (res>0) {
+                flag=true;
+                System.out.println("购物车更新成功");
+            } else {
+                System.out.println("购物车更新失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        jdbcUtils.close(connection, preparedStatement, null);
+        return flag;
+    }
+    */
 }

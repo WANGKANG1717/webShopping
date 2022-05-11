@@ -29,7 +29,7 @@
     %>
     <br>
     <img src="images/chat.png"/>&nbsp;<a target="_blank" href="https://kang17.xyz" style="cursor:hand">联系我们</a> <img
-        src="images/order.png"/>&nbsp;<a href="addShoppingCart?userID=<%=user.getId()%>">购物车</a>
+        src="images/order.png"/>&nbsp;<a href="ShoppingCart?userID=<%=user.getId()%>&method=get">购物车</a>
 </div>
 
 <div id="headermenu">

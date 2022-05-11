@@ -35,7 +35,8 @@
                if(user.getName()==null || user.getName().equals("")) { %>
                 请先登录
             <% } else { %>
-            <form action="addShoppingCart" method="post">
+            <form action="ShoppingCart" method="post">
+                <input type="hidden" name="method" value="post">
                 <input type="hidden" name="userID" value="<%=user.getId()%>">
                 <input type="hidden" name="productId" value="<%=product.getId()%>">
                 数&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="buyNum" size="6" style="color:#66668C;" value="1">件<p>

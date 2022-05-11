@@ -22,18 +22,21 @@
 				<%!
 					Double totalPrice=0.0;
 				%>
+				<jsp:useBean id="user" scope="session" class="com.example.javaWeb.Bean.User"/>
+				<jsp:useBean id="shoppingCard" scope="session" class="java.util.ArrayList"/>
 				 <%
-					 if(session.getAttribute("shoppingCard")==null){
+					 if(user.getName()==null || user.getName().equals("")) { %>
+						请先登录
+				<%	}
+					 else if(shoppingCard==null || shoppingCard.size()==0){
 					 	totalPrice=0.0;
 				 %>
 					<div id="empty">
 						<h3>您的购物车还是空的，</h3>
 						<h3>赶紧行动吧！</h3>
 					</div>
-				<%
-					 }
-					 else{
-				%>
+				<%	}
+					 else {	%>
 				<img src="images/shopping_card.gif" />
 				<div id="cart_tb">
 						<table style="width: 100%">
@@ -44,7 +47,6 @@
 								<td width="20%"><span style="color:#696969;font-size:13px;font-weight:bold;">数量</span></td>
 								<td width="20%"><span style="color:#696969;font-size:13px;font-weight:bold;">小计（元）</span></td>
 							</tr>
-							<jsp:useBean id="shoppingCard" scope="session" class="java.util.ArrayList"/>
 							<%
 								totalPrice=0.0;
 								for(int i=0; i<shoppingCard.size(); i++) {
@@ -60,14 +62,12 @@
 							%>
 						</table>
 					</div>
-				<%
-					}
-				%>
+				<%		}	%>
 				<div id="cart_tt">
 					合计总金额：<span id="totalPrice" style="font-size:18px;color:#f60;"><%=totalPrice%></span>元</td>
 				</div>
 				<div id="cart_lk">
-					<a href="index.jsp">继续购物</a> | <a href="#">去收银台结账</a> | <a href="cart_remove.jsp">清空购物车</a>
+					<a href="index.jsp">继续购物</a> | <a href="#">去收银台结账</a> | <a href="ShoppingCart?userID=<%=user.getId()%>&method=clear">清空购物车</a>
 				</div>
 
 			</div>

@@ -53,7 +53,7 @@ public class ShoppingCart {
                 product.setNum(Integer.parseInt(num));
                 products.add(product);
             }
-            System.out.println(products.size()+"adasdasdasdsdsd");
+            System.out.println(products.size());
             if (products!=null) {
                 System.out.println("获得购物车成功");
             } else {
@@ -118,6 +118,23 @@ public class ShoppingCart {
             throwables.printStackTrace();
         }
         jdbcUtils.close(connection, preparedStatement, resultSet);
+        return flag;
+    }
+
+    public static boolean ClearShoppingCart(String userID) {
+        connection = jdbcUtils.getConnection();
+        String sql="delete from shoppingCart WHERE userID=?;";
+        boolean flag=false;
+        try {
+            //查看数据库中是否存在
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userID);
+            preparedStatement.execute();
+            flag=true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        jdbcUtils.close(connection, preparedStatement, null);
         return flag;
     }
 }

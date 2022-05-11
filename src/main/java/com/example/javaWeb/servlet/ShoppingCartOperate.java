@@ -13,8 +13,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@WebServlet(name = "addShoppingCart", value = "/addShoppingCart")
+@WebServlet(name = "ShoppingCart", value = "/ShoppingCart")
 public class ShoppingCartOperate extends HttpServlet {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        /**
+         * 获取参数识别用户想要请求的方法
+         * 然后判断并调用对应的方法
+         */
+        String method = req.getParameter("method");
+        if ("post".equals(method)) {
+            doPost(req, resp);
+        } else if ("get".equals(method)) {
+            doGet(req, resp);
+        } else if ("clear".equals(method)) {
+            doClear(req, resp);
+        }
+    }
     //    添加购物车
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=utf-8");
@@ -100,6 +114,29 @@ public class ShoppingCartOperate extends HttpServlet {
 //            //将数据传回去
 //            request.getSession().setAttribute("shoppingCard", products);
 //        }
+        try {
+            request.getRequestDispatcher("/cart_view.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void doClear(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/html;charset=utf-8");
+        System.out.println("CLearShoppingCart");
+        String userID = request.getParameter("userID");
+        System.out.println(userID);
+        boolean flag = ShoppingCart.ClearShoppingCart(userID);
+        String info = "";
+        if (flag) {
+            info = "删除购物车成功";
+        } else {
+            info = "删除购物车失败";
+        }
+        request.getSession().setAttribute("shoppingCard", null);
+        request.getSession().setAttribute("info", info);
         try {
             request.getRequestDispatcher("/cart_view.jsp").forward(request, response);
         } catch (ServletException e) {
