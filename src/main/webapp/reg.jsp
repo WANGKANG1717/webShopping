@@ -1,9 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Insert title here</title>
+    <title>注册</title>
     <link rel="stylesheet" rev="stylesheet" href="css/global.css" type="text/css" media="all"/>
 </head>
 <body>
@@ -23,6 +21,7 @@
                 }
             %>
         </span><br>
+<%--        accept-charset="UTF-8"--%>
         <form action="user" method="post">
             <table align="center">
                 <tr>

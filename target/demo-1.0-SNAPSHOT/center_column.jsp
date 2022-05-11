@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
 <%@ page import="com.example.javaWeb.Bean.Product" %>
 
 <link rel="stylesheet" rev="stylesheet" href="css/center_column.css" type="text/css" media="all"/>

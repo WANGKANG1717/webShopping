@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>爱尚网扇品</title>
 <link rel="stylesheet" rev="stylesheet" href="css/global.css" type="text/css" media="all" />
 </head>

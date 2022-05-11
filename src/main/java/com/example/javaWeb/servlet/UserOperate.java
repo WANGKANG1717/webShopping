@@ -65,6 +65,14 @@ public class UserOperate extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 狗血
+     * 我集成到一个文件里面后，注册乱码了
+     * 而且还极难搞，，，，狗东西
+     * @param request
+     * @param response
+     */
     //注册
     public void doRegister(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -78,6 +86,7 @@ public class UserOperate extends HttpServlet {
         String passwd2=request.getParameter("passwd2");
         String sex=request.getParameter("sex");
         String[] hobby=request.getParameterValues("hobby");
+        System.out.println(sex);
 //        System.out.println(hobby[0]);
         String msg="";
         if(userName==null || userName.equals("")) {
