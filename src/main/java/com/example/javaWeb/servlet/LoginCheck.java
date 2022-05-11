@@ -18,10 +18,15 @@ public class LoginCheck extends HttpServlet {
         String passwd = request.getParameter("passwd");
 //        System.out.println(userName+passwd);
         String info = null;
-        if (User.Login(userName, passwd) == true) {
+        /**
+         * 本来偷懒使用username
+         * 后来发现太不方便了，还是传回user信息把
+         */
+        User user = User.Login(userName, passwd);
+        if (user!=null) {
             info = "Success";
             HttpSession session = request.getSession();
-            session.setAttribute("user", userName);
+            session.setAttribute("user", user);
         } else {
             info = "用户名或密码错误";
             System.out.println("验证失败");

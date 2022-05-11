@@ -21,6 +21,7 @@
 
     <div id="center_column">
         <jsp:useBean id="product" scope="session" class="com.example.javaWeb.Bean.Product"/>
+        <jsp:useBean id="user" scope="session" class="com.example.javaWeb.Bean.User"/>
         <div id=item_img>
             <img width="300px" height="225px" src="Picture/<%=product.getImg()%>"/>
         </div>
@@ -31,11 +32,11 @@
             售&nbsp;&nbsp;&nbsp;&nbsp;出：&nbsp;<span style="font-weight:bold;color:#CC6600;"><%=product.getSales()%></span>件<br>
 <%--            购买，以及加购功能--%>
             <%
-               if(session.getAttribute("user")==null) { %>
+               if(user.getName()==null || user.getName().equals("")) { %>
                 请先登录
             <% } else { %>
             <form action="addShoppingCart" method="post">
-                <input type="hidden" name="username" value="<%=session.getAttribute("user")%>">
+                <input type="hidden" name="userID" value="<%=user.getId()%>">
                 <input type="hidden" name="productId" value="<%=product.getId()%>">
                 数&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="buyNum" size="6" style="color:#66668C;" value="1">件<p>
                 <img src="images/buy_button.png"/>&nbsp;&nbsp;

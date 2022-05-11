@@ -12,11 +12,12 @@
 </div>
 
 <div id="header_right">
+    <jsp:useBean id="user" scope="session" class="com.example.javaWeb.Bean.User"/>
     <%
         String userName = null;
-        if (session.getAttribute("user") != null)
-            userName = session.getAttribute("user").toString();
-        if (userName == null) {
+        if (user != null)
+            userName = user.getName();
+        if (userName == null || userName.equals("")) {
     %>
     欢迎光临，<a href="reg.jsp">注册</a>/<a href="login.jsp">登陆</a>
     <%
@@ -28,7 +29,7 @@
     %>
     <br>
     <img src="images/chat.png"/>&nbsp;<a target="_blank" href="https://kang17.xyz" style="cursor:hand">联系我们</a> <img
-        src="images/order.png"/>&nbsp;<a href="addShoppingCart?username=<%=session.getAttribute("user")%>">购物车</a>
+        src="images/order.png"/>&nbsp;<a href="addShoppingCart?userID=<%=user.getId()%>">购物车</a>
 </div>
 
 <div id="headermenu">

@@ -14,11 +14,13 @@
         <td>
             <div id="left_login">
                 <img src="images/vip_logo.png"/><br><br>
+                <jsp:useBean id="user" scope="session" class="com.example.javaWeb.Bean.User"/>
                 <%
                     String userName = null;
-                    if (session.getAttribute("user") != null)
-                        userName = session.getAttribute("user").toString();
-                    if (userName == null) {
+                    if (user != null) {
+                        userName = user.getName();
+                    }
+                    if (userName == null || userName.equals("")) {
                 %>
                 <form action="loginCheck" method="post">
                     <span class="zt1">用户名:</span>
@@ -50,7 +52,7 @@
                 %>
                 <br><br>
                 <form action="exit" method="post">
-                    <input type="hidden" name="username" value="<%=session.getAttribute("user")%>">
+                    <input type="hidden" name="userID" value="<%=user.getId()%>">
                     <input type="submit" name="exit" value="退出">
                 </form>
 

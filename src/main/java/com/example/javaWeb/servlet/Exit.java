@@ -15,8 +15,8 @@ public class Exit extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.invalidate();
-        String userName = request.getParameter("username");
-        User.Exit(userName);
+        String userID = request.getParameter("userID");
+        User.Exit(userID);
         try {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServletException e) {

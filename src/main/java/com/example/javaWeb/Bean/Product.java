@@ -139,7 +139,11 @@ public class Product {
     private static PreparedStatement preparedStatement;
     private static ResultSet resultSet;
 
-
+    /**
+     * 得到单个产品信息
+     * @param id
+     * @return
+     */
     public static Product getProduct(Integer id) {
         connection = jdbcUtils.getConnection();
         String sql = "select * from product where id=?;";
