@@ -1,11 +1,9 @@
 <%@ page import="com.example.javaWeb.Bean.Product" %>
-<%@ page language="java" contentType="text/html; charset=GB2312"
-		 pageEncoding="GB2312"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GB2312">
-<title>��������Ʒ</title>
+<title>爱尚网扇品</title>
 <link rel="stylesheet" rev="stylesheet" href="css/global.css" type="text/css" media="all" />
 </head>
 <body>
@@ -26,14 +24,14 @@
 				<jsp:useBean id="shoppingCard" scope="session" class="java.util.ArrayList"/>
 				 <%
 					 if(user.getName()==null || user.getName().equals("")) { %>
-						���ȵ�¼
+						请先登录
 				<%	}
 					 else if(shoppingCard==null || shoppingCard.size()==0){
 					 	totalPrice=0.0;
 				 %>
 					<div id="empty">
-						<h3>���Ĺ��ﳵ���ǿյģ�</h3>
-						<h3>�Ͻ��ж��ɣ�</h3>
+						<h3>您的购物车还是空的，</h3>
+						<h3>赶紧行动吧！</h3>
 					</div>
 				<%	}
 					 else {	%>
@@ -41,11 +39,11 @@
 				<div id="cart_tb">
 						<table style="width: 100%">
 							<tr>
-								<td width="10%"><span style="color:#696969;font-size:13px;font-weight:bold;">���</span></td>
-								<td width="30%"><span style="color:#696969;font-size:13px;font-weight:bold;">��Ʒ����</span></td>
-								<td width="20%"><span style="color:#696969;font-size:13px;font-weight:bold;">���ۣ�Ԫ��</span></td>
-								<td width="20%"><span style="color:#696969;font-size:13px;font-weight:bold;">����</span></td>
-								<td width="20%"><span style="color:#696969;font-size:13px;font-weight:bold;">С�ƣ�Ԫ��</span></td>
+								<td width="10%"><span style="color:#696969;font-size:13px;font-weight:bold;">序号</span></td>
+								<td width="30%"><span style="color:#696969;font-size:13px;font-weight:bold;">商品名称</span></td>
+								<td width="20%"><span style="color:#696969;font-size:13px;font-weight:bold;">单价（元）</span></td>
+								<td width="20%"><span style="color:#696969;font-size:13px;font-weight:bold;">数量</span></td>
+								<td width="20%"><span style="color:#696969;font-size:13px;font-weight:bold;">小计（元）</span></td>
 							</tr>
 							<%
 								totalPrice=0.0;
@@ -64,10 +62,10 @@
 					</div>
 				<%		}	%>
 				<div id="cart_tt">
-					�ϼ��ܽ�<span id="totalPrice" style="font-size:18px;color:#f60;"><%=totalPrice%></span>Ԫ</td>
+					合计总金额：<span id="totalPrice" style="font-size:18px;color:#f60;"><%=totalPrice%></span>元</td>
 				</div>
 				<div id="cart_lk">
-					<a href="index.jsp">��������</a> | <a href="#">ȥ����̨����</a> | <a href="ShoppingCart?userID=<%=user.getId()%>&method=clear">��չ��ﳵ</a>
+					<a href="index.jsp">继续购物</a> | <a href="#">去收银台结账</a> | <a href="ShoppingCart?userID=<%=user.getId()%>&method=clear">清空购物车</a>
 				</div>
 
 			</div>

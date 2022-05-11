@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ page import="java.util.Calendar" %>
 
@@ -22,11 +21,13 @@
                     }
                     if (userName == null || userName.equals("")) {
                 %>
-                <form action="loginCheck" method="post">
+                <form action="user" method="post">
                     <span class="zt1">用户名:</span>
                     <input type="text" name="username" class="input"><br><br>
                     <span class="zt1">密&nbsp;&nbsp;码:</span>
                     <input type="password" name="passwd" class="input"><br>
+                    <%--method--%>
+                    <input type="hidden" name="method" value="login"><br><br>
                     <a href="reg.jsp"><img src="images/reg_button.gif" border="0 "/></a>
                     <input name="imageField" type="image" src="images/login_button.gif"/>
                 </form>
@@ -51,15 +52,14 @@
                     }
                 %>
                 <br><br>
-                <form action="exit" method="post">
-                    <input type="hidden" name="userID" value="<%=user.getId()%>">
+                <form action="user" method="post">
                     <input type="submit" name="exit" value="退出">
+                    <input type="hidden" name="method" value="exit"><br><br>
+                    <input type="hidden" name="userID" value="<%=user.getId()%>">
                 </form>
-
                 <%
                     }
                 %>
-
             </div>
         </td>
         <td background=images/line_05.gif>&nbsp;</td>

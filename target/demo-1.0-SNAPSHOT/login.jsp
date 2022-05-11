@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -22,7 +20,7 @@
                 <img src="images/boy.gif"/>
             </div>
             <div id="div_login_form">
-                <form action="loginCheck" method="post">
+                <form action="user" method="post">
                     <span class="zt2">
                         <%
                             String message=(String) request.getAttribute("outputMessage");
@@ -37,6 +35,7 @@
                     <input type="password" name="passwd" class="input"><br><br>
                     <input name="imageField" type="image" src="images/login_button.gif"/>
                     <a href="reg.jsp"><img src="images/reg_button.gif" border="0 "/></a>
+                    <input type="hidden" name="method" value="login"><br><br>
                 </form>
             </div>
             <div id="div_login_rightimg">
