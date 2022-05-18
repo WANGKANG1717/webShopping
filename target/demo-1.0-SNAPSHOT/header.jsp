@@ -21,14 +21,14 @@
     欢迎光临，<a href="reg.jsp">注册</a>/<a href="login.jsp">登陆</a>
     <%
         } else {
-            byte a[] = userName.getBytes("ISO-8859-1");
+            byte a[] = userName.getBytes("utf-8");
             userName = new String(a);
             out.print("" + userName + "，<span style='color:red'>欢迎光临!</span>");
         }
     %>
     <br>
     <img src="images/chat.png"/>&nbsp;<a target="_blank" href="https://kang17.xyz" style="cursor:hand">联系我们</a> <img
-        src="images/order.png"/>&nbsp;<a href="ShoppingCart?userID=<%=user.getId()%>&method=get">购物车</a>
+        src="images/order.png"/>&nbsp;<a href="shoppingCart?userID=<%=user.getId()%>&method=get">购物车</a>
 </div>
 
 <div id="headermenu">
@@ -40,12 +40,12 @@
             <a class="li" href="#"><img src="images/dh_2.png" border="0 "/>&nbsp;商店公告</a>
         </li>
         <li>
-            <form action="getProduct" method="post" name="Products">
-                <input type="hidden" name="method" value="post">
+            <form action="product" method="post" name="getAllProduct">
+                <input type="hidden" name="method" value="getAll">
                 <input type="hidden" name="page" value="1">
                 <input type="hidden" name="limit" value="6">
                 <input type="hidden" name="category" value="">
-                <a class="li" href="javascript:document.Products.submit()"><img src="images/dh_3.png" border="0 "/>&nbsp;全部商品</a>
+                <a class="li" href="javascript:document.getAllProduct.submit()"><img src="images/dh_3.png" border="0 "/>&nbsp;全部商品</a>
             </form>
         </li>
         <li>

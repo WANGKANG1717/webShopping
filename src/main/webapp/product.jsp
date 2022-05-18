@@ -26,8 +26,8 @@
                         Product product = (Product) products.get(i);
                         out.print("<div id='sort_product'>\n" +
                                 "\t\t\t\t\t<ul>\n" +
-                                "\t\t\t\t\t\t<li><p class='gpic'><a href='getProduct?id=" + product.getId() + "&method=get'><img width='205px' height='154px' src=\"Picture/" + product.getImg() + "\"></a></p></li>\n" +
-                                "\t\t\t\t\t\t<li><p class='gbt'><a href='getProduct?id=" + product.getId() + "&method=get'>品名；" + product.getName() + " </a></p></li>\n" +
+                                "\t\t\t\t\t\t<li><p class='gpic'><a href='product?id=" + product.getId() + "&method=get'><img width='205px' height='154px' src=\"Picture/" + product.getImg() + "\"></a></p></li>\n" +
+                                "\t\t\t\t\t\t<li><p class='gbt'><a href='product?id=" + product.getId() + "&method=get'>品名；" + product.getName() + " </a></p></li>\n" +
                                 "\t\t\t\t\t\t<li><p class='gprice'>促销价：<span style=\"color:#FF6600;font-weight:bold;\"></span>￥" + product.getPrice() + "元</p></li>\n" +
                                 "\t\t\t\t\t\t<li><p class='gsale'>已售出：<span style='font-weight:bold;'>" + product.getSales() + "</span>&nbsp;笔</p></li>\n" +
                                 "\t\t\t\t\t</ul>\n" +
@@ -45,12 +45,12 @@
                 Integer currentPage=(Integer) session.getAttribute("page");
                 Integer totalPage=(Integer) session.getAttribute("PageNum");
                 if(currentPage>1) { %>
-                    <a class="pageLink" href="getProduct?page=<%=(Integer) session.getAttribute("page")-1%>&limit=6&category=<%=session.getAttribute("category")%>&method=post">上一页</a>
+                    <a class="pageLink" href="product?page=<%=(Integer) session.getAttribute("page")-1%>&limit=6&category=<%=session.getAttribute("category")%>&method=getAll">上一页</a>
                <% } else { %>
                     <a class="pageLink">上一页</a>
                <% }
                 if(currentPage<totalPage) { %>
-                    <a class="pageLink" href="getProduct?page=<%=(Integer) session.getAttribute("page")+1%>&limit=6&category=<%=session.getAttribute("category")%>&method=post">下一页</a>
+                    <a class="pageLink" href="product?page=<%=(Integer) session.getAttribute("page")+1%>&limit=6&category=<%=session.getAttribute("category")%>&method=getAll">下一页</a>
                <% }else { %>
                     <a class="pageLink">下一页</a>
                 <% } %>

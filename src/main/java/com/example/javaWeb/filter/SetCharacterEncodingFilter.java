@@ -19,7 +19,7 @@ public class SetCharacterEncodingFilter implements Filter {
 
         public String toUTF8(String input) {
             try {
-                byte[] bytes = input.getBytes("ISO8859-1");
+                byte[] bytes = input.getBytes();
                 return new String(bytes, "utf-8");
             } catch (Exception ex) {
             }
@@ -48,8 +48,8 @@ public class SetCharacterEncodingFilter implements Filter {
     public void destroy() {
     }
 
-    public void doFilter(ServletRequest request, ServletResponse
-            response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletRequest httpreq = (HttpServletRequest) request;
         if (httpreq.getMethod().equals("POST")) {
             request.setCharacterEncoding("utf-8");

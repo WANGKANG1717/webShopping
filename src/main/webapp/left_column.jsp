@@ -33,7 +33,7 @@
                 </form>
                 <%
                 } else {
-                    byte a[] = userName.getBytes("ISO-8859-1");
+                    byte a[] = userName.getBytes("utf-8");
                     userName = new String(a);
                     Calendar cal = Calendar.getInstance();
                     int hour = cal.get(Calendar.HOUR_OF_DAY);
@@ -86,22 +86,22 @@
                 <div id="sort_menu">
                     <ul id="menu">
                         <li><img src="images/sort_menu.gif"/>&nbsp;&nbsp;
-                            <a class="li_sort" href="getProduct?page=1&limit=6&category=日式女扇&method=post">
+                            <a class="li_sort" href="product?page=1&limit=6&category=日式女扇&method=getAll">
                                 日式女扇</a></li>
                         <hr size="1"/>
                         <li><img src="images/sort_menu.gif"/>&nbsp;&nbsp;
-                            <a class="li_sort" href="getProduct?page=1&limit=6&category=仿古男扇&method=post">仿古男扇</a></li>
+                            <a class="li_sort" href="product?page=1&limit=6&category=仿古男扇&method=getAll">仿古男扇</a></li>
                         <hr size="1"/>
                         <li><img src="images/sort_menu.gif"/>&nbsp;&nbsp;
-                            <a class="li_sort" href="getProduct?page=1&limit=6&category=韩国扇&method=post">韩国扇</a>
+                            <a class="li_sort" href="product?page=1&limit=6&category=韩国扇&method=getAll">韩国扇</a>
                         </li>
                         <hr size="1"/>
                         <li><img src="images/sort_menu.gif"/>&nbsp;&nbsp;
-                            <a class="li_sort" href="getProduct?page=1&limit=6&category=檀香扇&method=post">檀香扇</a>
+                            <a class="li_sort" href="product?page=1&limit=6&category=檀香扇&method=getAll">檀香扇</a>
                         </li>
                         <hr size="1"/>
                         <li><img src="images/sort_menu.gif"/>&nbsp;&nbsp;
-                            <a class="li_sort" href="getProduct?page=1&limit=6&category=礼品广告扇&method=post">礼品广告扇</a></li>
+                            <a class="li_sort" href="product?page=1&limit=6&category=礼品广告扇&method=getAll">礼品广告扇</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,7 +170,7 @@
         <td>
             <div id="left_sort">
                 <img src="images/sale_logo.png"/><br><br>
-                <div id="sale_sql_more"><a class="sql_more" href="getProduct?page=1&limit=6&category=&method=post">查看更多商品</a></div>
+                <div id="sale_sql_more"><a class="sql_more" href="product?page=1&limit=6&category=&method=getAll">查看更多商品</a></div>
             </div>
         </td>
         <td background=images/line_05.gif>&nbsp;</td>

@@ -1,6 +1,8 @@
-package com.example.javaWeb.servlet;
+package com.example.javaWeb.controller;
 
 import com.example.javaWeb.entity.Product;
+import com.example.javaWeb.service.ProductService;
+import com.example.javaWeb.service.imp.ProductServiceImp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,10 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-@WebServlet(name = "getProduct", value = "/getProduct")
-public class ProductOperate extends HttpServlet {
+
+@WebServlet(name = "product", value = "/product")
+public class ProductController extends HttpServlet {
+    ProductService productService=new ProductServiceImp();
+
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         /**
          * 获取参数识别用户想要请求的方法
@@ -19,20 +25,20 @@ public class ProductOperate extends HttpServlet {
          */
         String method = req.getParameter("method");
         if ("get".equals(method)) {
-            doGet(req, resp);
-        } else if ("post".equals(method)) {
-            doPost(req, resp);
-        } else if ("getNewProduct".equals(method)) {
+            getProduct(req, resp);
+        } else if ("getAll".equals(method)) {
+            getAllProduct(req, resp);
+        } else if ("getNew".equals(method)) {
             getNewProduct(req, resp);
         }
     }
 
     //得到单个商品的信息
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    public void getProduct(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=utf-8");
-        System.out.println("getProuct");
+        System.out.println("getProduct");
         Integer id = Integer.parseInt(request.getParameter("id"));
-        Product product = Product.getProduct(id);
+        Product product = productService.getProduct(id);
 //        HttpSession session = request.getSession();
 //        session.setAttribute("product", "1231323");
         request.getSession().setAttribute("product", product);
@@ -46,18 +52,18 @@ public class ProductOperate extends HttpServlet {
     }
 
     //得到多个商品的信息
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+    public void getAllProduct(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=utf-8");
-        System.out.println("getProucts");
+        System.out.println("getAllProduct");
         Integer page = Integer.parseInt(request.getParameter("page"));        //第几页
         Integer limit = Integer.parseInt(request.getParameter("limit"));       //一页限制多少个
         String category = request.getParameter("category");                 //请求的产品类型
+        System.out.println(page + " "+limit +" "+category);
         //进行查询
-        ArrayList<Product> products = Product.getProducts(page, limit, category);
+        ArrayList<Product> products = productService.getProducts(page, limit, category);
         //查询总的个数
         //方便判断页数
-        Integer TotalNum=Product.getProductsNum(category);
-//        ArrayList<Product> products = Product.getAllProduct();
+        Integer TotalNum=productService.getProductsNum(category);
         if (products != null) {
             request.getSession().removeAttribute("products");
             request.getSession().setAttribute("products", products);
@@ -78,7 +84,7 @@ public class ProductOperate extends HttpServlet {
     public void getNewProduct(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=utf-8");
         System.out.println("getNewProucts");
-        ArrayList<Product> products = Product.getProducts(1, 6, "");
+        ArrayList<Product> products = productService.getProducts(1, 6, "");
         request.getSession().setAttribute("newProducts", products);
         try {
             request.getRequestDispatcher("/index.jsp").forward(request, response);

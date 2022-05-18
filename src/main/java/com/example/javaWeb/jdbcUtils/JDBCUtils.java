@@ -1,4 +1,4 @@
-package com.example.javaWeb;
+package com.example.javaWeb.jdbcUtils;
 
 import java.sql.*;
 import java.util.ResourceBundle;

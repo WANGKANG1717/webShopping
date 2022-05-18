@@ -124,8 +124,8 @@
 
 <%
     if(session.getAttribute("newProducts") == null) {%>
-        <jsp:forward page="getProduct">
-            <jsp:param name="method" value="getNewProduct"/>
+        <jsp:forward page="product">
+            <jsp:param name="method" value="getNew"/>
         </jsp:forward>
 <%}%>
 
@@ -141,8 +141,8 @@
             Product product=(Product) newProducts.get(i);
             out.print(
                     "<div id=\"select_product\">\n" +
-                    "        <div id=\"select_img\"><a href=\"getProduct?id="+product.getId()+"&method=get\"><img width=\"205px\" height=\"154px\" src=\"Picture/"+product.getImg()+"\"></a></div>\n" +
-                    "        <div id=\"select_about\"><a class=\"a\" href=\"item?id="+product.getId()+"&method=get\">品名："+product.getName()+" </a><br>\n" +
+                    "        <div id=\"select_img\"><a href=\"product?id="+product.getId()+"&method=get\"><img width=\"205px\" height=\"154px\" src=\"Picture/"+product.getImg()+"\"></a></div>\n" +
+                    "        <div id=\"select_about\"><a class=\"a\" href=\"product?id="+product.getId()+"&method=get\">品名："+product.getName()+" </a><br>\n" +
                     "            促销价：<span style=\"color:#FF6600;font-weight:bold;\">￥"+product.getPro_price()+"</span>元<br>\n" +
                     "            已售出：<span style=\"font-weight:bold;\">"+product.getSales()+"</span>&nbsp;笔\n" +
                     "        </div>\n" +
