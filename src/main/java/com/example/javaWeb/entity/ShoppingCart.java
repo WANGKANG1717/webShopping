@@ -1,4 +1,4 @@
-package com.example.javaWeb.Bean;
+package com.example.javaWeb.entity;
 
 import com.example.javaWeb.JDBCUtils;
 

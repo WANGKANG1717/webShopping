@@ -1,8 +1,7 @@
 package com.example.javaWeb.servlet;
 
-import com.example.javaWeb.Bean.Product;
-import com.example.javaWeb.Bean.ShoppingCart;
-import com.example.javaWeb.Bean.User;
+import com.example.javaWeb.entity.Product;
+import com.example.javaWeb.entity.ShoppingCart;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 @WebServlet(name = "ShoppingCart", value = "/ShoppingCart")
 public class ShoppingCartOperate extends HttpServlet {

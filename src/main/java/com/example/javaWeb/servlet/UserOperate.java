@@ -1,6 +1,6 @@
 package com.example.javaWeb.servlet;
 
-import com.example.javaWeb.Bean.User;
+import com.example.javaWeb.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

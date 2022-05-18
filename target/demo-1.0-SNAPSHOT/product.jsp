@@ -1,4 +1,4 @@
-<%@ page import="com.example.javaWeb.Bean.Product" %>
+<%@ page import="com.example.javaWeb.entity.Product" %>
 <%@ page import="com.mysql.cj.Session" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 

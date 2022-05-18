@@ -1,4 +1,4 @@
-<%@ page import="com.example.javaWeb.Bean.Product" %><%--
+<%@ page import="com.example.javaWeb.entity.Product" %><%--
   Created by IntelliJ IDEA.
   User: WANGKANG
   Date: 2022/4/20
@@ -15,7 +15,7 @@
 <%--    <input type="text" value="1" name="id">--%>
 <%--    <input type="submit" value="提交">--%>
 <%--</form>--%>
-<%--<jsp:useBean id="product" scope="session" class="com.example.javaWeb.Bean.Product"/>--%>
+<%--<jsp:useBean id="product" scope="session" class="com.example.javaWeb.entity.Product"/>--%>
 <%--<jsp:getProperty name="product" property="id"/><br>--%>
 <%--<jsp:getProperty name="product" property="name"/><br>--%>
 <%--<jsp:getProperty name="product" property="price"/><br>--%>

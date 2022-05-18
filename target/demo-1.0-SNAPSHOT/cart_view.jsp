@@ -1,4 +1,4 @@
-<%@ page import="com.example.javaWeb.Bean.Product" %>
+<%@ page import="com.example.javaWeb.entity.Product" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,7 +20,7 @@
 				<%!
 					Double totalPrice=0.0;
 				%>
-				<jsp:useBean id="user" scope="session" class="com.example.javaWeb.Bean.User"/>
+				<jsp:useBean id="user" scope="session" class="com.example.javaWeb.entity.User"/>
 				<jsp:useBean id="shoppingCard" scope="session" class="java.util.ArrayList"/>
 				 <%
 					 if(user.getName()==null || user.getName().equals("")) { %>

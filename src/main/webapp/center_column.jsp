@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.example.javaWeb.Bean.Product" %>
+<%@ page import="com.example.javaWeb.entity.Product" %>
 
 <link rel="stylesheet" rev="stylesheet" href="css/center_column.css" type="text/css" media="all"/>
 

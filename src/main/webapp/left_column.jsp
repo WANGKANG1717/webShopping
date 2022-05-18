@@ -13,7 +13,7 @@
         <td>
             <div id="left_login">
                 <img src="images/vip_logo.png"/><br><br>
-                <jsp:useBean id="user" scope="session" class="com.example.javaWeb.Bean.User"/>
+                <jsp:useBean id="user" scope="session" class="com.example.javaWeb.entity.User"/>
                 <%
                     String userName = null;
                     if (user != null) {

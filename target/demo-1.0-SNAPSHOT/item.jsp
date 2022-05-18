@@ -18,8 +18,8 @@
     </div>
 
     <div id="center_column">
-        <jsp:useBean id="product" scope="session" class="com.example.javaWeb.Bean.Product"/>
-        <jsp:useBean id="user" scope="session" class="com.example.javaWeb.Bean.User"/>
+        <jsp:useBean id="product" scope="session" class="com.example.javaWeb.entity.Product"/>
+        <jsp:useBean id="user" scope="session" class="com.example.javaWeb.entity.User"/>
         <div id=item_img>
             <img width="300px" height="225px" src="Picture/<%=product.getImg()%>"/>
         </div>

@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 public class SetCharacterEncodingFilter implements Filter {
-    class Request extends HttpServletRequestWrapper
-    {
+    class Request extends HttpServletRequestWrapper {
         public Request(HttpServletRequest request) {
             super(request);
         }
+
         public String toUTF8(String input) {
             try {
                 byte[] bytes = input.getBytes("ISO8859-1");
@@ -25,18 +25,17 @@ public class SetCharacterEncodingFilter implements Filter {
             }
             return null;
         }
-        private HttpServletRequest getHttpServletRequest()
-        {
+
+        private HttpServletRequest getHttpServletRequest() {
             return (HttpServletRequest) super.getRequest();
         }
-        public String getParameter(String name)
-        {
-            return
-                    toUTF8(getHttpServletRequest().getParameter(name));
+
+        public String getParameter(String name) {
+            return toUTF8(getHttpServletRequest().getParameter(name));
         }
-        public String[] getParameterValues(String name)
-        {
-            String values[] =getHttpServletRequest().getParameterValues(name);
+
+        public String[] getParameterValues(String name) {
+            String values[] = getHttpServletRequest().getParameterValues(name);
             if (values != null) {
                 for (int i = 0; i < values.length; i++) {
                     values[i] = toUTF8(values[i]);
@@ -45,10 +44,12 @@ public class SetCharacterEncodingFilter implements Filter {
             return values;
         }
     }
+
     public void destroy() {
     }
+
     public void doFilter(ServletRequest request, ServletResponse
-            response,FilterChain chain) throws IOException, ServletException {
+            response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpreq = (HttpServletRequest) request;
         if (httpreq.getMethod().equals("POST")) {
             request.setCharacterEncoding("utf-8");
@@ -57,7 +58,7 @@ public class SetCharacterEncodingFilter implements Filter {
         }
         chain.doFilter(request, response);
     }
-    public void init(FilterConfig filterConfig) throws
-            ServletException {
+
+    public void init(FilterConfig filterConfig) throws ServletException {
     }
 }

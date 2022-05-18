@@ -11,7 +11,7 @@
 </div>
 
 <div id="header_right">
-    <jsp:useBean id="user" scope="session" class="com.example.javaWeb.Bean.User"/>
+    <jsp:useBean id="user" scope="session" class="com.example.javaWeb.entity.User"/>
     <%
         String userName = null;
         if (user != null)

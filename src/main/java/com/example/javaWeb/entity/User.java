@@ -1,4 +1,4 @@
-package com.example.javaWeb.Bean;
+package com.example.javaWeb.entity;
 
 import com.example.javaWeb.JDBCUtils;
 
@@ -174,7 +174,7 @@ public class User {
                 user.setSex(resultSet.getString(4));
                 user.setHobby(toArray(resultSet.getString(5)));
                 user.setOnline(1);      //设置为在线
-                user.setBalance(Double.parseDouble(resultSet.getString(8)));
+                user.setBalance(Double.parseDouble(resultSet.getString(7)));
                 //更改在线状态
                 /**
                  * 这里有点冗余
