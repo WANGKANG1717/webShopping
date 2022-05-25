@@ -36,7 +36,7 @@
             <form action="shoppingCart" method="post">
                 <input type="hidden" name="method" value="add">
                 <input type="hidden" name="userID" value="<%=user.getId()%>">
-                <input type="hidden" name="productId" value="<%=product.getId()%>">
+                <input type="hidden" name="productID" value="<%=product.getId()%>">
                 数&nbsp;&nbsp;&nbsp;&nbsp;量：&nbsp;<input type="text" name="buyNum" size="6" style="color:#66668C;" value="1">件<p>
                 <img src="images/buy_button.png"/>&nbsp;&nbsp;
                 <input type="image" src="images/shopping_button.png" name="submit" value="加入购物车"></p>

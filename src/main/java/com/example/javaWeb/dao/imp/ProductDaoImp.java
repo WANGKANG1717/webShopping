@@ -127,6 +127,42 @@ public class ProductDaoImp implements ProductDao {
     }
 
     @Override
+    public ArrayList<Product> getByKeyword(String keyword) {
+        connection = jdbcUtils.getConnection();
+        String sql = "SELECT * from product WHERE `name` LIKE ? OR category LIKE ? OR fan_material LIKE ?;";
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, "%"+keyword+"%");
+            preparedStatement.setString(2, "%"+keyword+"%");
+            preparedStatement.setString(3, "%"+keyword+"%");
+            //执行sql语句之前需要给参数赋值
+            preparedStatement.executeQuery();
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(Integer.parseInt(resultSet.getString(1)));
+                product.setName(resultSet.getString(2));
+                product.setPrice(Double.parseDouble(resultSet.getString(3)));
+                product.setPro_price(Double.parseDouble(resultSet.getString(4)));
+                product.setInventory(Integer.parseInt(resultSet.getString(5)));
+                product.setSales(Integer.parseInt(resultSet.getString(6)));
+                product.setImg(resultSet.getString(7));
+                product.setCategory(resultSet.getString(8));
+                product.setFan_material(resultSet.getString(9));
+                product.setFan_bone_material(resultSet.getString(10));
+                product.setFan_bone_num(Integer.parseInt(resultSet.getString(11)));
+                product.setFan_bone_length(Integer.parseInt(resultSet.getString(12)));
+                products.add(product);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        jdbcUtils.close(connection, preparedStatement, resultSet);
+        return products;
+    }
+
+    @Override
     public Integer getNumByCategory(String category) {
         connection = jdbcUtils.getConnection();
         String sql = "SELECT Count(*) FROM product WHERE category like ?;";

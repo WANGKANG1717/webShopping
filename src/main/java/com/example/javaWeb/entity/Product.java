@@ -16,6 +16,8 @@ public class Product {
 
     //购物车中数量
     private Integer num;
+    //查到的总数（方便进行程序设计）
+    private Integer totalNum;
 
     //总价
     private Double total_price;
@@ -124,4 +126,8 @@ public class Product {
     public void setTotal_price() {
         this.total_price = this.getPro_price()*this.getNum();
     }
+
+    public Integer getTotalNum() { return totalNum; }
+
+    public void setTotalNum(Integer totalNum) { this.totalNum = totalNum; }
 }

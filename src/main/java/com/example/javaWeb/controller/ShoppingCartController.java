@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 @WebServlet(name = "shoppingCart", value = "/shoppingCart")
 public class ShoppingCartController extends HttpServlet {
-    private ShoppingCartService shoppingCartService=new ShoppingCartServiceImp();
+    private ShoppingCartService shoppingCartService = new ShoppingCartServiceImp();
 
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         /**
@@ -28,19 +28,23 @@ public class ShoppingCartController extends HttpServlet {
             addShoppingCart(req, resp);
         } else if ("get".equals(method)) {
             getShoppingCart(req, resp);
-        } else if ("clear".equals(method)) {
+        } else if ("clearAll".equals(method)) {
+            clearShoppingCarts(req, resp);
+        } else if ("clearOne".equals(method)) {
             clearShoppingCart(req, resp);
         }
     }
+
     //    添加购物车
     public void addShoppingCart(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=utf-8");
         System.out.println("addShoppingCart");
         Integer userID = Integer.parseInt(request.getParameter("userID"));
-        Integer productId = Integer.parseInt(request.getParameter("productId"));
+        Integer productID = Integer.parseInt(request.getParameter("productID"));
+        System.out.println(request.getParameter("buyNum") + "buyNum");
         Integer buyNum = Integer.parseInt(request.getParameter("buyNum"));
-        System.out.println(userID + " " + productId + " " +buyNum);
-        boolean flag = shoppingCartService.AddShoppingCart(new ShoppingCart(userID, productId, buyNum));
+        System.out.println(userID + " " + productID + " " + buyNum);
+        boolean flag = shoppingCartService.AddShoppingCart(new ShoppingCart(userID, productID, buyNum));
         String info = "";
         if (flag) {
             info = "添加购物车成功";
@@ -79,9 +83,9 @@ public class ShoppingCartController extends HttpServlet {
         }
     }
 
-    public void clearShoppingCart(HttpServletRequest request, HttpServletResponse response) {
+    public void clearShoppingCarts(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=utf-8");
-        System.out.println("clearShoppingCart");
+        System.out.println("clearShoppingCarts");
         String userID = request.getParameter("userID");
         System.out.println(userID);
         boolean flag = shoppingCartService.ClearShoppingCart(userID);
@@ -92,6 +96,30 @@ public class ShoppingCartController extends HttpServlet {
             info = "删除购物车失败";
         }
         request.getSession().setAttribute("shoppingCard", null);
+        request.getSession().setAttribute("info", info);
+        try {
+            request.getRequestDispatcher("/cart_view.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clearShoppingCart(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/html;charset=utf-8");
+        System.out.println("clearShoppingCart");
+        String userID = request.getParameter("userID");
+        String productID = request.getParameter("productID");
+        System.out.println(userID + " " + productID);
+        boolean flag = shoppingCartService.ClearShoppingCart(userID, productID);
+        String info = "";
+        if (flag) {
+            info = "删除购物车2成功";
+        } else {
+            info = "删除购物车2失败";
+        }
+        request.getSession().setAttribute("shoppingCard", shoppingCartService.getShoppingCart(userID));
         request.getSession().setAttribute("info", info);
         try {
             request.getRequestDispatcher("/cart_view.jsp").forward(request, response);

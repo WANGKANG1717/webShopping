@@ -12,6 +12,8 @@ public interface ProductDao {
 
     public ArrayList<Product> getByCategory(String category);
 
+    public ArrayList<Product> getByKeyword(String keyword);
+
     public Integer getNumByCategory(String category);
 
     /**

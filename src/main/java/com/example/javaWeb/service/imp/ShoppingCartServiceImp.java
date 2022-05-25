@@ -34,7 +34,10 @@ public class ShoppingCartServiceImp implements ShoppingCartService {
             shoppingCart=shoppingCarts.get(i);
             Product product=productDao.getById(shoppingCart.getProductID().toString());
             product.setNum(Integer.parseInt(shoppingCart.getNum().toString()));
-            products.add(product);
+            //只有大于零的才能展示
+            if(product.getNum()>0){
+                products.add(product);
+            }
         }
         if (products.size()>0) {
             System.out.println("getShoppingCart Success");
@@ -44,11 +47,6 @@ public class ShoppingCartServiceImp implements ShoppingCartService {
         return products;
     }
 
-    /**
-     * 写道这里了
-     * @param shoppingCart
-     * @return
-     */
     @Override
     public boolean AddShoppingCart(ShoppingCart shoppingCart) {
         boolean flag=false;
@@ -56,10 +54,19 @@ public class ShoppingCartServiceImp implements ShoppingCartService {
         shoppingCart1=shoppingCartDao.getByUserId_ProId(shoppingCart.getUserID().toString(), shoppingCart.getProductID().toString());
         if(shoppingCart1!=null) {
             shoppingCart1.setNum(shoppingCart1.getNum()+shoppingCart.getNum());
-            flag=shoppingCartDao.update(shoppingCart1);
+            if(shoppingCart1.getNum()<=0) {
+                System.out.println("更新后商品数量小于等于0");
+                return false;
+            }
+            else flag=shoppingCartDao.update(shoppingCart1);
         }
         else {
-            flag=shoppingCartDao.add(shoppingCart);
+            //数据库中不存在，且要添加的商品数量小于等于0
+            if(shoppingCart.getNum()<=0) {
+                System.out.println("要添加的商品数量小于0");
+                return false;
+            }
+            else flag=shoppingCartDao.add(shoppingCart);
         }
         return flag;
     }

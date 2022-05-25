@@ -19,5 +19,7 @@ public interface ProductService {
 
     public ArrayList<Product> getProducts(Integer page, Integer limit, String category);
 
+    public ArrayList<Product> getProducts(Integer page, Integer limit, String priceOrder, String salesOrder, String keyword);
+
     public Integer getProductsNum(String category);
 }
