@@ -123,10 +123,10 @@
 </form>
 
 <%
-    if(session.getAttribute("newProducts") == null) {%>
-        <jsp:forward page="product">
-            <jsp:param name="method" value="getNew"/>
-        </jsp:forward>
+    if (session.getAttribute("newProducts") == null) {%>
+<jsp:forward page="product">
+    <jsp:param name="method" value="getNew"/>
+</jsp:forward>
 <%}%>
 
 <div class="divBorder">
@@ -137,16 +137,21 @@
     <%--    最新商品 --%>
     <jsp:useBean id="newProducts" scope="session" class="java.util.ArrayList"/>
     <%
-        for(int i=0; i<newProducts.size(); i++) {
-            Product product=(Product) newProducts.get(i);
-            out.print(
-                    "<div id=\"select_product\">\n" +
-                    "        <div id=\"select_img\"><a href=\"product?id="+product.getId()+"&method=get\"><img width=\"205px\" height=\"154px\" src=\"Picture/"+product.getImg()+"\"></a></div>\n" +
-                    "        <div id=\"select_about\"><a class=\"a\" href=\"product?id="+product.getId()+"&method=get\">品名："+product.getName()+" </a><br>\n" +
-                    "            促销价：<span style=\"color:#FF6600;font-weight:bold;\">￥"+product.getPro_price()+"</span>元<br>\n" +
-                    "            已售出：<span style=\"font-weight:bold;\">"+product.getSales()+"</span>&nbsp;笔\n" +
-                    "        </div>\n" +
-                    "    </div>");
-        }
+        for (int i = 0; i < newProducts.size(); i++) {
+            Product product = (Product) newProducts.get(i);
     %>
+    <div id="select_product">
+        <div id="select_img">
+            <a class="a" href="product?id=<%=product.getId()%>&method=get">
+                <img width="205px" height="154px" src="Picture/<%=product.getImg()%>">
+            </a>
+        </div>
+        <div id="select_about">
+            <a class="a" href="product?id=<%=product.getId()%>&method=get">品名：<%=product.getName()%></a><br>
+            原价：<span style="color:#FF6600;font-weight:bold;"></span>￥<del><%=product.getPrice()%></del>元<br>
+            促销价：<span style="color:#FF6600;font-weight:bold;">￥<%=product.getPro_price()%></span>元<br>
+            已售出：<span style="font-weight:bold;"><%=product.getSales()%></span>&nbsp;笔
+        </div>
+    </div>
+    <% } %>
 </div>

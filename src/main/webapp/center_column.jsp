@@ -148,6 +148,7 @@
         </div>
         <div id="select_about">
             <a class="a" href="product?id=<%=product.getId()%>&method=get">品名：<%=product.getName()%></a><br>
+            原价：<span style="color:#FF6600;font-weight:bold;"></span>￥<del><%=product.getPrice()%></del>元<br>
             促销价：<span style="color:#FF6600;font-weight:bold;">￥<%=product.getPro_price()%></span>元<br>
             已售出：<span style="font-weight:bold;"><%=product.getSales()%></span>&nbsp;笔
         </div>

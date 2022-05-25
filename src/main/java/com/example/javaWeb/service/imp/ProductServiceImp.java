@@ -15,7 +15,7 @@ import java.util.Comparator;
  * @Description: ©WK
  */
 public class ProductServiceImp implements ProductService {
-    ProductDao productDao=new ProductDaoImp();
+    ProductDao productDao = new ProductDaoImp();
 
     @Override
     public Product getProduct(Integer id) {
@@ -29,18 +29,17 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public ArrayList<Product> getProducts(Integer page, Integer limit, String category) {
-        ArrayList<Product> allProducts=productDao.getByCategory(category);
-        ArrayList<Product> products=new ArrayList<>();
+        ArrayList<Product> allProducts = productDao.getByCategory(category);
+        ArrayList<Product> products = new ArrayList<>();
         //得到查询到的所有产品总数，写到第一个产品中去，这样可以避免再次查询数据库
-        Integer TotalNum=allProducts.size();
-        for(int i=0; i<allProducts.size(); i++) {
+        Integer TotalNum = allProducts.size();
+        for (int i = 0; i < allProducts.size(); i++) {
             allProducts.get(i).setTotalNum(TotalNum);
         }
-        if(page<=0 || allProducts.size()<=((page-1)*limit)) {
+        if (page <= 0 || allProducts.size() <= ((page - 1) * limit)) {
             return products;
-        }
-        else {
-            for(int i=(page-1)*limit; i<allProducts.size() && i<page*limit; i++) {
+        } else {
+            for (int i = (page - 1) * limit; i < allProducts.size() && i < page * limit; i++) {
                 products.add(allProducts.get(i));
             }
             return products;
@@ -53,57 +52,50 @@ public class ProductServiceImp implements ProductService {
         Comparator<Product> priceUp = new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
-                if(o1.getPrice()>o2.getPrice()) return 1;
-                else if(o1.getPrice()==o2.getPrice()) return 0;
-                else return -1;
+                return Double.compare(o1.getPro_price(), o2.getPro_price());
             }
         };
         Comparator<Product> priceDown = new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
-                if(o1.getPrice()>o2.getPrice()) return -1;
-                else if(o1.getPrice()==o2.getPrice()) return 0;
-                else return 1;
+                return -1*Double.compare(o1.getPro_price(), o2.getPro_price());
             }
         };
         Comparator<Product> salesUp = new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
-                return o1.getSales()- o2.getSales();
+                return Integer.compare(o1.getSales(), o2.getSales());
             }
         };
         Comparator<Product> salesDown = new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
-                return o2.getSales() - o1.getSales();
+                return -1*Integer.compare(o1.getSales(), o2.getSales());
             }
         };
         //模糊查询
-        ArrayList<Product> allProducts=productDao.getByKeyword(keyword);
-        if(priceOrder.equals("price+")) {
+        ArrayList<Product> allProducts = productDao.getByKeyword(keyword);
+        if (priceOrder.equals("price+")) {
             allProducts.sort(priceUp);
-        }
-        else if(priceOrder.equals("price-")) {
+        } else if (priceOrder.equals("price-")) {
             allProducts.sort(priceDown);
         }
-        if(salesOrder.equals("sales+")) {
+        if (salesOrder.equals("sales+")) {
             allProducts.sort(salesUp);
-        }
-        else if(salesOrder.equals("sales-")) {
+        } else if (salesOrder.equals("sales-")) {
             allProducts.sort(salesDown);
         }
         //得到查询到的所有产品总数，写到第一个产品中去，这样可以避免再次查询数据库
-        Integer TotalNum=allProducts.size();
-        for(int i=0; i<allProducts.size(); i++) {
+        Integer TotalNum = allProducts.size();
+        for (int i = 0; i < allProducts.size(); i++) {
             allProducts.get(i).setTotalNum(TotalNum);
         }
         //
-        ArrayList<Product> products=new ArrayList<>();
-        if(page<=0 || allProducts.size()<=((page-1)*limit)) {
+        ArrayList<Product> products = new ArrayList<>();
+        if (page <= 0 || allProducts.size() <= ((page - 1) * limit)) {
             return products;
-        }
-        else {
-            for(int i=(page-1)*limit; i<allProducts.size() && i<page*limit; i++) {
+        } else {
+            for (int i = (page - 1) * limit; i < allProducts.size() && i < page * limit; i++) {
                 products.add(allProducts.get(i));
             }
             return products;

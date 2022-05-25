@@ -72,10 +72,11 @@ public class ProductController extends HttpServlet {
         if (products != null) {
             request.getSession().removeAttribute("products");
             request.getSession().setAttribute("products", products);
-            request.getSession().setAttribute("page", page);            //当前页数
+            request.getSession().setAttribute("Page", page);            //当前页数
             request.getSession().setAttribute("category", category);    //当前查找的类型
-            request.getSession().setAttribute("TotalNUm", TotalNum);    //产品的总数
+            request.getSession().setAttribute("TotalNum", TotalNum);    //产品的总数
             request.getSession().setAttribute("PageNum", TotalNum / limit + (TotalNum % limit != 0 ? 1 : 0));   //总的页数(向上取整)
+            request.getSession().setAttribute("getType", "getAllProduct");
         }
         try {
             request.getRequestDispatcher("/product.jsp").forward(request, response);
@@ -105,12 +106,12 @@ public class ProductController extends HttpServlet {
         System.out.println("searchProduct");
         Integer page = Integer.parseInt(request.getParameter("page"));        //第几页
         Integer limit = Integer.parseInt(request.getParameter("limit"));       //一页限制多少个
-        String priceOrder = request.getParameter("price");
-        String salesOrder = request.getParameter("sales");
+        String priceSelect = request.getParameter("priceSelect");
+        String salesSelect = request.getParameter("salesSelect");
         String keyword = request.getParameter("keyword");
-        System.out.println(page + " " + limit + " " + priceOrder + " " + salesOrder + " " + keyword);
+        System.out.println(page + " " + limit + " " + priceSelect + " " + salesSelect + " " + keyword);
         //进行查询
-        ArrayList<Product> products = productService.getProducts(page, limit, priceOrder, salesOrder, keyword);
+        ArrayList<Product> products = productService.getProducts(page, limit, priceSelect, salesSelect, keyword);
         //查询总的个数
         //方便判断页数
         Integer TotalNum = 0;
@@ -120,10 +121,13 @@ public class ProductController extends HttpServlet {
         if (products != null) {
             request.getSession().removeAttribute("products");
             request.getSession().setAttribute("products", products);
-            request.getSession().setAttribute("page", page);            //当前页数
+            request.getSession().setAttribute("Page", page);            //当前页数
             request.getSession().setAttribute("keyword", keyword);    //当前查找的类型
-            request.getSession().setAttribute("TotalNUm", TotalNum);    //产品的总数
+            request.getSession().setAttribute("TotalNum", TotalNum);    //产品的总数
             request.getSession().setAttribute("PageNum", TotalNum / limit + (TotalNum % limit != 0 ? 1 : 0));   //总的页数(向上取整)
+            request.getSession().setAttribute("priceSelect", priceSelect);            //当前页数
+            request.getSession().setAttribute("salesSelect", salesSelect);
+            request.getSession().setAttribute("getType", "searchProduct");
         }
         try {
             request.getRequestDispatcher("/product.jsp").forward(request, response);
