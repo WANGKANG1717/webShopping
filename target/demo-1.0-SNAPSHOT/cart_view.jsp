@@ -91,7 +91,6 @@
                 %>
             </table>
         </div>
-        <% } %>
         <div id="cart_tt">
             合计总金额：<span id="totalPrice" style="font-size:18px;color:#f60;"><%=totalPrice%></span>元</td>
         </div>
@@ -99,7 +98,7 @@
             <a href="index.jsp">继续购物</a> | <a href="#">去收银台结账</a> | <a
                 href="shoppingCart?userID=<%=user.getId()%>&method=clearAll">清空购物车</a>
         </div>
-
+        <% } %>
     </div>
     <div id="footer">
         <jsp:include page="bottom.jsp"/>

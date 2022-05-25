@@ -37,7 +37,12 @@
             <a class="li" href="index.jsp"><img src="images/dh_1.png" border="0 "/>&nbsp;首页</a>
         </li>
         <li>
-            <a class="li" href="#"><img src="images/dh_2.png" border="0 "/>&nbsp;商店公告</a>
+            <form action="notice" method="post" name="getAllNotice">
+                <input type="hidden" name="method" value="getAll">
+                <input type="hidden" name="page" value="1">
+                <input type="hidden" name="limit" value="20">
+                <a class="li" href="javascript:document.getAllNotice.submit()"><img src="images/dh_2.png" border="0"/>&nbsp;商店公告</a>
+            </form>
         </li>
         <li>
             <form action="product" method="post" name="getAllProduct">
@@ -53,7 +58,7 @@
         </li>
 
         <li>
-            <a class="li" href="#"><img src="images/dh_5.png" border="0 "/>&nbsp;关于我们</a>
+            <a class="li" href="https://kang17.xyz" target="_blank"><img src="images/dh_5.png" border="0 "/>&nbsp;关于我们</a>
         </li>
 
         <li>
@@ -63,9 +68,13 @@
 </div>
 
 <div id="search">
-    <form id="form1" name="search" method="post" action="#">
-        <input type="text" name="textfield" style="color:#a4a4a4;vertical-align:middle;" value="请输入关键字"
-               onfocus="this.value=''"/>&nbsp
-        <input name="imageField" type="image" align="absmiddle" src="images/search.gif"/>
+    <form action='product' method='post'>
+        <input type='text' name='page' value='1' style='display:none'>
+        <input type='text' name='limit' value='6' style='display:none'>
+        <input type='text' name='method' value='search' style='display:none'>
+        <input type='text' name='priceSelect' value='' style='display:none'>
+        <input type='text' name='salesSelect' value='' style='display:none'>
+        <input type='text' name='keyword' placeholder='请输入关键字'>
+        <input type='submit' value='搜索'>
     </form>
 </div>
