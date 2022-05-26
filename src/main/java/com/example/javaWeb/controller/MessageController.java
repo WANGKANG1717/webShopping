@@ -29,28 +29,10 @@ public class MessageController {
         String method = req.getParameter("method");
         if ("get".equals(method)) {
             getMessage(req, resp);
-        } else if ("getAll".equals(method)) {
-            getAllMessage(req, resp);
         }
     }
 
     public void getMessage(HttpServletRequest request, HttpServletResponse response) {
-        response.setContentType("text/html;charset=utf-8");
-        System.out.println("getMessage");
-        String id = request.getParameter("id");
-        Message message = messageService.getMessage(id);
-        System.out.println(id+ "id Message");
-        request.getSession().setAttribute("message", message);
-        try {
-            request.getRequestDispatcher("/message_view.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void getAllMessage(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=utf-8");
         System.out.println("getMessage");
         Integer page = Integer.parseInt(request.getParameter("page"));

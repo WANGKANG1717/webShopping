@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @Description: ©WK
  */
 public class MessageServiceImp implements MessageService {
-    MessageDao messageDao=new MessageDaoImp();
+    MessageDao messageDao = new MessageDaoImp();
 
     public Message getMessage(String id) {
         return messageDao.getById(id);
@@ -25,6 +25,20 @@ public class MessageServiceImp implements MessageService {
     }
 
     public ArrayList<Message> getMessages(Integer page, Integer limit) {
-        return messageDao.getAll();
+        ArrayList<Message> allMessages = messageDao.getAll();
+        ArrayList<Message> messages = new ArrayList<>();
+        //得到查询到的所有产品总数，写到第一个产品中去，这样可以避免再次查询数据库
+        Integer TotalNum = allMessages.size();
+        for (int i = 0; i < allMessages.size(); i++) {
+            allMessages.get(i).setTotalNum(TotalNum);
+        }
+        if (page <= 0 || allMessages.size() <= ((page - 1) * limit)) {
+            return messages;
+        } else {
+            for (int i = (page - 1) * limit; i < allMessages.size() && i < page * limit; i++) {
+                messages.add(allMessages.get(i));
+            }
+            return messages;
+        }
     }
 }
