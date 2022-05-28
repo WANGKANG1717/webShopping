@@ -40,7 +40,7 @@
                 <label style="font: 15px bold;"><%=notice.getPtime()%></label>
             </div>
             <div style="width: 100%; text-align: left;">
-                <p style="word-wrap: break-word; word-break: normal;"><%=notice.getContent()%></p>
+                <p style="word-wrap: break-word; word-break: normal; font-size: 17px"><%=notice.getContent()%></p>
             </div>
         </div>
     </div>

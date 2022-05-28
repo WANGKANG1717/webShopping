@@ -62,7 +62,12 @@
         </li>
 
         <li>
-            <a class="li" href="#"><img src="images/dh_6.png" border="0 "/>&nbsp;在线留言</a>
+            <form action="message" method="post" name="getMessage">
+                <input type="hidden" name="method" value="getAll">
+                <input type="hidden" name="page" value="1">
+                <input type="hidden" name="limit" value="25">
+                <a class="li" href="javascript:document.getMessage.submit()"><img src="images/dh_6.png" border="0 "/>&nbsp;在线留言</a>
+            </form>
         </li>
     </ul>
 </div>

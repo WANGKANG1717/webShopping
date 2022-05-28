@@ -1,5 +1,7 @@
 package com.example.javaWeb.entity;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -9,29 +11,27 @@ import java.util.Date;
  * @Description: ©WK
  */
 public class Message {
+    String id;
     String uID;
-    String pID;
+    String mID;
+    LocalDateTime ptime;
     String content;
 
-    public Integer getTotalNum() {
-        return totalNum;
-    }
-
-    public void setTotalNum(Integer totalNum) {
-        this.totalNum = totalNum;
-    }
-
-    Integer totalNum;
-
-    public Date getPtime() {
+    public LocalDateTime getPtime() {
         return ptime;
     }
 
-    public void setPtime(Date ptime) {
+    public void setPtime(LocalDateTime ptime) {
         this.ptime = ptime;
     }
 
-    Date ptime;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getuID() {
         return uID;
@@ -41,12 +41,12 @@ public class Message {
         this.uID = uID;
     }
 
-    public String getpID() {
-        return pID;
+    public String getmID() {
+        return mID;
     }
 
-    public void setpID(String pID) {
-        this.pID = pID;
+    public void setmID(String mID) {
+        this.mID = mID;
     }
 
     public String getContent() {
@@ -55,5 +55,16 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id='" + id + '\'' +
+                ", uID='" + uID + '\'' +
+                ", mID='" + mID + '\'' +
+                ", ptime=" + ptime +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

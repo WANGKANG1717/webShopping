@@ -61,7 +61,7 @@ public class NoticeController extends HttpServlet {
         System.out.println(page +" " + limit);
         ArrayList<Notice> notices = noticeService.getNotices(page, limit);
         //
-        Integer TotalNum = 0;
+        Integer TotalNum = new Integer(0);
         if(notices.size()>0) {
             TotalNum = notices.get(0).getTotalNum();
         }

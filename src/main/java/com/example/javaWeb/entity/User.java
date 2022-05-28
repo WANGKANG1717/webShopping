@@ -63,4 +63,10 @@ public class User {
     public Double getBalance() { return balance; }
 
     public void setBalance(Double balance) { this.balance = balance;}
+
+    @Override
+    public boolean equals(Object obj) {
+        User b=(User) obj;
+        return this.id.equals(b.id);
+    }
 }

@@ -13,4 +13,6 @@ import java.util.ArrayList;
 public interface MessageDao {
     Message getById(String id);
     ArrayList<Message> getAll();
+    boolean deleteById(String id);
+    boolean add(String userID, String mID, String Content);
 }

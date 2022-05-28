@@ -1,6 +1,7 @@
 package com.example.javaWeb.service;
 
 import com.example.javaWeb.entity.Message;
+import com.example.javaWeb.entity.MessageInfo;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,21 @@ import java.util.ArrayList;
 public interface MessageService {
     public Message getMessage(String id);
 
+    public boolean deleteMessage(String id);
+
     public ArrayList<Message> getAllMessage();
 
-    public ArrayList<Message> getMessages(Integer page, Integer limit);
+    public ArrayList<MessageInfo> getMessages();
+
+    public ArrayList<MessageInfo> getMessages(Integer page, Integer limit);
+
+    public ArrayList<MessageInfo> getMessagePair(String id);
+
+    public boolean addMessage(String userID, String mID, String content);
+
+//    public HashMap<String, ArrayList<Message>> getMessages();
+
+//    public ArrayList<Message> getMessageHead();
+//
+//    public  ArrayList<Message> getMessageChildByID(String id);
 }

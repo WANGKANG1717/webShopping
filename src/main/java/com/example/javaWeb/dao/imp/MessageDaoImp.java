@@ -6,6 +6,8 @@ import com.example.javaWeb.jdbcUtils.JDBCUtils;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -31,13 +33,14 @@ public class MessageDaoImp implements MessageDao {
             preparedStatement.setString(1, id);
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             if (resultSet.next()) {
                 message=new Message();
-                message.setuID(resultSet.getString(1));
-                message.setpID(resultSet.getString(2));
-                message.setContent(resultSet.getString(3));
-                message.setPtime(format.parse(resultSet.getString(4)));
+                message.setId(resultSet.getString(1));
+                message.setuID(resultSet.getString(2));
+                message.setmID(resultSet.getString(3));
+                message.setContent(resultSet.getString(4));
+                message.setPtime(LocalDateTime.parse(resultSet.getString(5), dateFormat));
             }
         } catch (Exception throwables) {
             throwables.printStackTrace();
@@ -56,13 +59,14 @@ public class MessageDaoImp implements MessageDao {
             //执行sql语句之前需要给参数赋值
             preparedStatement.executeQuery();
             resultSet = preparedStatement.getResultSet();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             while (resultSet.next()) {
                 Message message = new Message();
-                message.setuID(resultSet.getString(1));
-                message.setpID(resultSet.getString(2));
-                message.setContent(resultSet.getString(3));
-                message.setPtime(format.parse(resultSet.getString(4)));
+                message.setId(resultSet.getString(1));
+                message.setuID(resultSet.getString(2));
+                message.setmID(resultSet.getString(3));
+                message.setContent(resultSet.getString(4));
+                message.setPtime(LocalDateTime.parse(resultSet.getString(5), dateFormat));
                 messages.add(message);
             }
         } catch (Exception throwables) {
@@ -70,5 +74,47 @@ public class MessageDaoImp implements MessageDao {
         }
         jdbcUtils.close(connection, preparedStatement, resultSet);
         return messages;
+    }
+
+    @Override
+    public boolean deleteById(String id) {
+        System.out.println("Message -> deleteById");
+        connection = jdbcUtils.getConnection();
+        String sql = "DELETE FROM message WHERE id=?;";
+        boolean flag=false;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            //执行sql语句之前需要给参数赋值
+            preparedStatement.setString(1, id);
+            if(preparedStatement.executeUpdate()==1) {
+                flag=true;
+            }
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+        }
+        jdbcUtils.close(connection, preparedStatement, resultSet);
+        return flag;
+    }
+
+    @Override
+    public boolean add(String userID, String mID, String Content) {
+        System.out.println("Message -> addByUserID_Content");
+        connection = jdbcUtils.getConnection();
+        String sql = "INSERT INTO  `message` set uID=?, mID=?, content=?;";
+        boolean flag=false;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            //执行sql语句之前需要给参数赋值
+            preparedStatement.setString(1, userID);
+            preparedStatement.setString(2, mID);
+            preparedStatement.setString(3, Content);
+            if(preparedStatement.executeUpdate()==1) {
+                flag=true;
+            }
+        } catch (Exception throwables) {
+            throwables.printStackTrace();
+        }
+        jdbcUtils.close(connection, preparedStatement, resultSet);
+        return flag;
     }
 }

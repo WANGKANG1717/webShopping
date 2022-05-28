@@ -10,6 +10,6 @@ import java.util.ArrayList;
  * @Description: ©WK
  */
 public interface NoticeDao {
-    Notice getById(String id);
-    ArrayList<Notice> getAll();
+    public Notice getById(String id);
+    public ArrayList<Notice> getAll();
 }

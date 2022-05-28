@@ -27,7 +27,7 @@
                     <span class="zt1">密&nbsp;&nbsp;码:</span>
                     <input type="password" name="passwd" class="input"><br>
                     <%--method--%>
-                    <input type="hidden" name="method" value="login"><br><br>
+                    <input type="text" name="method" value="login" style="display: none"><br><br>
                     <a href="reg.jsp"><img src="images/reg_button.gif" border="0 "/></a>
                     <input name="imageField" type="image" src="images/login_button.gif"/>
                 </form>
